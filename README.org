@@ -1,0 +1,50 @@
+* chronos
+
+  Yet another cron-like job scheduler.
+
+* Usage
+
+  #+begin_src javascript
+	scheduler.on('* * * * *', () => {
+		console.log('this function executes every minute');
+	}, {
+		verbose: true,
+		timezone: 'America/New_York'
+	});
+
+	scheduler.on('* * 25th sat 7', () => {
+		console.log('this function executes every minute on July 25th');
+	});
+
+	scheduler.on('04:08pm 25th sat 7', () => {
+		console.log('this function executes at 04:08PM on July 25pth');
+	});
+
+	scheduler.on('*/4 0,12 1 */2 *', () => {
+		console.log('at every 4th minute past hour 0 and 12 on day-of-month 1 in every 2nd month');
+	});
+
+	scheduler.on({
+		id: 3,
+		schedule: {
+			hours: 9,
+			minutes: 0,
+			greenwich: 'am',
+			month: 5
+		}
+	}, () => {
+		console.log('this function executes every day of May at 09:00AM');
+	});
+
+	// disables the execution of the cron job "0"
+	scheduler.disable(0);
+
+	// removes the job "1" from the list of executing jobs
+	scheduler.rm(1);
+
+	// returns a list of all jobs in execution
+	scheduler.list();
+
+	// returns only jobs who were executed once
+	console.log(scheduler.list({ executed: true }));
+  #+end_src
