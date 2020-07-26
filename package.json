@@ -1,14 +1,20 @@
 {
   "name": "chronos",
   "version": "1.0.0",
-  "main": "dist/cron.js",
-  "types": "dist/index.d.ts",
+  "description": "Yet another cron-like scheduler",
+  "main": "dist/scheduler.js",
+  "types": "dist/scheduler.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc -p ./",
-	"test": "node ./dist/cron.js",
+    "test": "node ./dist/cron.js",
     "start": "npm run build -- -w",
-	"clean": "tsc --build --clean"
+    "clean": "tsc --build --clean"
+  },
+  "author": "https://github.com/0-l",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/0-l/chronos.git"
   },
   "devDependencies": {
     "ts-node": "^8.8.1",

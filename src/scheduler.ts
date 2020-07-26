@@ -3,8 +3,8 @@ import Timer  from './timer';
 
 import { Cron, Options, ListOptions } from './typedefs';
 
-export default class Scheduler {
-	crons: Cron[] = [];
+class Scheduler {
+	private crons: Cron[] = [];
 
 	/**
 	 * Creates a new job
@@ -89,3 +89,5 @@ export default class Scheduler {
 		return (schedule as Cron).schedule !== undefined;
 	}
 }
+
+export default new Scheduler();
