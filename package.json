@@ -1,5 +1,5 @@
 {
-  "name": "chronos",
+  "name": "@b-coimbra/chronos",
   "version": "1.0.0",
   "description": "Yet another cron-like scheduler",
   "main": "dist/scheduler.js",
@@ -15,6 +15,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/0-l/chronos.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/b-coimbra"
   },
   "devDependencies": {
     "ts-node": "^8.8.1",

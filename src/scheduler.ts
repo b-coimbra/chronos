@@ -7,12 +7,12 @@ class Scheduler {
 	private crons: Cron[] = [];
 
 	/**
-	 * Creates a new job
+	 * Creates a new job event
 	 * @param schedule The schedule itself
 	 * @param callback The operation to be executed
 	 * @param options  Whether or not to alert when a job is executed
 	 */
-	on(schedule: string | Cron, callback: Function, options?: Options) {
+	on(schedule: string | Cron, callback: Function, options?: Options): void {
 		let cron: Cron;
 
 		if (this.isCron(schedule))
@@ -59,7 +59,7 @@ class Scheduler {
 	}
 
 	/**
-	 * Manually add a cron object
+	 * Manually add a cron object to the list of crons
 	 */
 	private add(cron: Cron, callback: Function): void {
 		cron.callback = callback;
@@ -75,6 +75,8 @@ class Scheduler {
 
 	/**
 	 * Organizes unordered IDs
+	 * @param   List of jobs to be cleaned
+	 * @returns List of ordered jobs
 	 */
 	private clean(jobs: Cron[]): Cron[] {
 		return jobs

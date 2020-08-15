@@ -1,4 +1,5 @@
 import { Cron, Options, Schedule, Expr } from './typedefs';
+import Logger from './logger';
 
 export default class Timer {
 	callback: Function;
@@ -12,6 +13,9 @@ export default class Timer {
 	}
 
 	verify(job: Cron): void {
+		if (this.options?.verbose)
+			Logger.startTime(job, this.timestamp(job));
+
 		setInterval(() => {
 			this.compare(job);
 		}, 1000);
@@ -84,7 +88,7 @@ export default class Timer {
 			return;
 
 		if (this.options?.verbose)
-			console.log('[chronos] Executing cron job #' + job.id);
+			Logger.executing(job.id);
 
 		if (this.hasAny(job))
 			this.tick(job);
@@ -97,9 +101,8 @@ export default class Timer {
 	private compare(job: Cron): void {
 		if (this.now === this.timestamp(job))
 			this.dispatch(job, this.now);
-		else {
+		else
 			if (this.hasAny(job))
 				this.tick(job);
-		}
 	}
 }
